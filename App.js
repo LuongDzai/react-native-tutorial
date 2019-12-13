@@ -1,32 +1,26 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 
 export default function App() {
-  const [name, setName] = useState("Shawn");
-  const [age, setAge] = useState("30");
+  const [people, setPeople] = useState([
+    { name: "Luong", key: "1" },
+    { name: "Huong", key: "2" },
+    { name: "Linh", key: "3" },
+    { name: "Tien", key: "4" },
+    { name: "Kien", key: "5" },
+    { name: "C Quynh", key: "6" },
+    { name: "C Nhung", key: "7" }
+  ]);
 
   return (
     <View style={styles.container}>
-      <Text>
-        Enter Name:
-      </Text>
-      <TextInput style={styles.input}
-      multiline
-      placeholder='e.g Luong Vu Xuan'
-      onChangeText={(val)=>setName(val)}
-      />
-      
-      <Text>
-        Enter Age:
-      </Text>
-      <TextInput style={styles.input}
-      placeholder='e.g 20'
-      keyboardType='numeric'
-      onChangeText={(val)=>setAge(val)}
-      />
-      <Text>
-        name is {name} and age is {age}
-      </Text>
+      <ScrollView>
+        {people.map(item => (
+          <View key={item.key}>
+            <Text style={styles.item}>{item.name}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -35,37 +29,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    paddingTop: 40,
+    paddingHorizontal: 20
+    // alignItems: "center",
+    // justifyContent: "center"
   },
-  input:{
-    borderWidth: 1,
-    borderColor: '#777',
-    padding: 8,
-    margin: 10,
-    width: 200,
+  item: {
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: "pink",
+    fontSize: 24
   }
 });
-
-// <View style={styles.container}>
-//   <View style={styles.header}>
-//     <Text style={styles.boldText}>Hello, World</Text>
-//   </View>
-//   <View style={styles.body}>
-//     <Text style={styles.boldText}>Thajat <Text>khong the tin</Text>abcxyz</Text>
-//     <Text>abcxyz</Text>
-//     <Text>abcxyz</Text>
-//   </View>
-// </View>
-
-// header: {
-//   backgroundColor: "pink",
-//   padding: 20,
-// },
-// boldText: {
-//   fontWeight: "bold",
-// },
-// body: {
-//   backgroundColor:'yellow',
-//   padding: 20,
-// }
